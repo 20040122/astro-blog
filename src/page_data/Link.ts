@@ -9,11 +9,6 @@ export default {
       "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1655466387&s=640",
       "descr": "运气是计划之外的东西."
     },
-    {
-      "name": "韩小韩API",
-      "link": "https://api.vvhan.com",
-      "avatar": "https://api.vvhan.com/static/images/logo.webp",
-      "descr": "免费Web API数据接口调用服务平台."
-    }
+  
   ]
 }

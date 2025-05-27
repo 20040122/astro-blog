@@ -1,13 +1,13 @@
 ---
 title: "关于"
 h1: "关于我"
-desc: "Hi there, I’m Han 👋"
+desc: "Hi there, I’m 230 👋"
 layout: "@/layouts/PageLayout/PageLayout.astro"
 type: "about"
 ---
 
 :::note{type="success"}
-我是韩小韩，一位对技术充满热情、涉猎广泛的探索者，同时也是一名热衷于探索前沿技术的实践者。
+我是张长明，一位对技术充满热情、涉猎广泛的探索者，同时也是一名热衷于探索前沿技术的实践者。
 
 我始终保持对新技术的热情，并将我的知识与经验分享在我的博客中。
 
@@ -71,21 +71,6 @@ type: "about"
 |  **Han Analytics**  | **<https://analytics.vvhan.com>** |
 | **Cloudflare 优选** |    **<https://cf.vvhan.com>**     |
 
-## 联系我
 
-```js
-const Han = class {
-	constructor() {
-		const Hello = [123, 34, 110, 97, 109, 101, 34, 58, 34, 72, 97, 110, 34, 44, 34, 101, 109, 97, 105, 108, 34, 58, 34, 49, 54];
-		const EveryOne = [53, 53, 52, 54, 54, 51, 56, 55, 64, 113, 113, 46, 99, 111, 109, 34, 44, 34, 81, 81, 34, 58, 49, 54, 53, 53];
-		const WelcomeTo = [52, 54, 54, 51, 56, 55, 44, 34, 119, 101, 99, 104, 97, 116, 34, 58, 49, 54, 53, 53, 52, 54, 54, 51, 56, 55];
-		const MineBlog = [44, 34, 98, 105, 114, 116, 104, 34, 58, 49, 57, 57, 56, 44, 34, 115, 101, 120, 34, 58, 34, 30007, 34, 125];
-		const AboutMe = JSON.parse(String.fromCharCode.apply(null, [...Hello, ...EveryOne, ...WelcomeTo, ...MineBlog]));
-		AboutMe.age = new Date().getFullYear() - AboutMe.birth;
-		console.log(AboutMe);
-	}
-};
-new Han();
-```
 
 <style>.enfj-dom{margin:1rem 0;position:relative;box-sizing:border-box;padding:1rem 2rem;display:flex;justify-content:space-between;width:100%;height:16rem;background:#fff;border:1px solid #e3e8f7;border-radius:12px;box-shadow:0 8px 16px -4px #2c2d300c;overflow:hidden;background:url("/assets/images/enfj.webp") no-repeat;background-size:8.8rem auto;background-position:right 2rem;transition:all .36s}.enfj-dom:hover{background-position:right 1.6rem}.enfj-dom>.text{display:flex;flex-direction:column;width:100%}.enfj-dom>.text>em,.enfj-dom>.text>span{padding:0;margin:0;font-size:2rem;cursor:default;line-height:2.6rem;font-style:normal}.enfj-dom>.text>span{font-weight:bold;color:#33a474}.enfj-dom>.text>a.more-enfj{margin-top:auto;color:#999 !important;font-size:.88rem !important;text-decoration:none !important}</style>
