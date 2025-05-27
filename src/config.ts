@@ -4,7 +4,7 @@ export default {
   // 网站地址
   Site: 'https://unique-fairy-8490c8.netlify.app/',
   // 网站副标题
-  Subtitle: '越努力越幸运.',
+  Subtitle: '越努力、越幸运.',
   // 网站描述
   Description: '张长明博客',
   // 网站作者
@@ -32,7 +32,7 @@ export default {
     // 其他页面高度
     PageHeight: '28.88rem',
     // 背景
-    background: "url('/assets/images/home-banner.webp') no-repeat center 60%/cover",
+    background: "url('/assets/images/home.webp') no-repeat center 60%/cover",
   },
   // 博客主题配置
   Theme: {

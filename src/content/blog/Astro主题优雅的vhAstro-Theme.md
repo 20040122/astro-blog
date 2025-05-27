@@ -6,7 +6,6 @@ id: "astro-theme-vhastro-theme"
 date: 2025-03-02 18:18:18
 cover: "https://i0.wp.com/uxiaohan.github.io/v2/2025/04/1743737394560.webp"
 recommend: true
-top: true
 ---
 
 :::note{type="success"}
