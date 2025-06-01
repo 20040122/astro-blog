@@ -1,6 +1,6 @@
 export default {
   // 网站标题
-  Title: '张长明博客',
+  Title: '230的博客',
   // 网站地址
   Site: 'https://unique-fairy-8490c8.netlify.app/',
   // 网站副标题
