@@ -4,9 +4,9 @@ export default {
   // 网站地址
   Site: 'https://unique-fairy-8490c8.netlify.app/',
   // 网站副标题
-  Subtitle: '越努力、越幸运.',
+  Subtitle: '',
   // 网站描述
-  Description: '张长明博客',
+  Description: '230的博客',
   // 网站作者
   Author: '230',
   // 作者头像
