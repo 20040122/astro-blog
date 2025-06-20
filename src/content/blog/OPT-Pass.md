@@ -157,3 +157,28 @@ $LLVM_DIR/bin/lli instrumented.bin
 对比：
 
 ![image-20250620114217869](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620114217869.png)
+
+## StaticCallCounter
+
+> - 类型：分析Pass
+>
+> - 作用：用于统计静态直接函数调用次数的分析 Pass，不考虑运行时行为或函数指针调用。
+
+![image-20250620130556384](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620130556384.png)
+
+```shell
+export LLVM_DIR=/usr/lib/llvm-19
+# Generate an LLVM file to analyze
+$LLVM_DIR/bin/clang -emit-llvm -c ~/llvm-tutor/inputs/input_for_cc.c -o input_for_cc.bc
+# Run the pass through opt
+$LLVM_DIR/bin/opt -load-pass-plugin ~/llvm-tutor/build/lib/libStaticCallCounter.so -passes="print<static-cc>" -disable-output input_for_cc.bc
+```
+
+![image-20250620131217757](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620131217757.png)
+
+通过static启动
+
+```shell
+~/llvm-tutor/build/bin/static input_for_cc.bc
+```
+

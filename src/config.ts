@@ -16,10 +16,9 @@ export default {
   // Cover 网站缩略图
   Cover: '/assets/images/banner/072c12ec85d2d3b5.webp',
   // 网站侧边栏公告 (不填写即不开启)
-  Tips: '<p>欢迎来到张长明的个人博客</p>',
+  Tips: '<p>230的博客</p>',
   // 首页打字机文案列表
   TypeWriteList: [
-    '越努力越幸运.',
     "The harder you work, the luckier you will be.",
   ],
   // 网站创建时间
@@ -122,5 +121,5 @@ export default {
     paramsName: 'url'
   },
   // 页面阻尼滚动速度
-  ScrollSpeed: 666
+  ScrollSpeed: 650
 }
