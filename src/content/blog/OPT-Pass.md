@@ -182,3 +182,68 @@ $LLVM_DIR/bin/opt -load-pass-plugin ~/llvm-tutor/build/lib/libStaticCallCounter.
 ~/llvm-tutor/build/bin/static input_for_cc.bc
 ```
 
+
+
+## DynamicCallCounter
+
+> - 类型：分析Pass
+>
+> - 作用：统计定义在当前模块中的函数调用次数。
+>
+> ***对于 DynamicCallCounter，我们必须运行插桩的二进制文件才能看到输出。***
+
+```shell
+export LLVM_DIR=/usr/lib/llvm-19
+# Generate an LLVM file to analyze
+$LLVM_DIR/bin/clang -emit-llvm -c ~/llvm-tutor/inputs/input_for_cc.c -o input_for_cc.bc
+# Instrument the input file
+$LLVM_DIR/bin/opt -load-pass-plugin /home/zcm230/llvm-tutor/build/lib/libDynamicCallCounter.so -passes="dynamic-cc" input_for_cc.bc -o instrumented_bin
+
+# Run the instrumented binary
+$LLVM_DIR/bin/lli  ./instrumented_bin
+```
+
+![image-20250620150347711](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620150347711.png)
+
+
+
+对比：
+
+![image-20250620150559889](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620150559889.png)
+
+
+
+## Mixed Boolean Arithmetic Transformations
+
+### MBASub
+
+$$
+a - b == (a + b反) + 1
+$$
+
+```shell
+export LLVM_DIR=/usr/lib/llvm-19
+$LLVM_DIR/bin/clang -emit-llvm -S ~/llvm-tutor/inputs/input_for_mba_sub.c -o input_for_sub.ll
+$LLVM_DIR/bin/opt -load-pass-plugin ~/llvm-tutor/build/lib/libMBASub.so -passes="mba-sub" -S input_for_sub.ll -o out.ll
+```
+
+input_for_sub.ll
+
+![image-20250620153532909](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620153532909.png)
+
+经pass优化后的out.ll：
+
+![image-20250620153623689](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620153623689.png)
+
+### MBAAdd
+
+```
+a + b == (((a ^ b) + 2 * (a & b)) * 39 + 23) * 151 + 111
+```
+
+```shell
+export LLVM_DIR=/usr/lib/llvm-19
+$LLVM_DIR/bin/clang -O1 -emit-llvm -S ~/llvm-tutor/inputs/input_for_mba.c -o input_for_mba.ll
+$LLVM_DIR/bin/opt -load-pass-plugin ~/llvm-tutor/build/lib/libMBAAdd.so -passes="mba-add" -S input_for_mba.ll -o out.ll
+```
+
