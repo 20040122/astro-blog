@@ -64,3 +64,96 @@ lit ~/llvm-tutor/build/test
 ```
 
 ![image-20250619232157673](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250619232157673.png)
+
+
+
+## HelloWorld Pass
+
+- 清除cmake缓存
+
+```shell
+rm -rf build
+mkdir build
+cd build
+cmake -DLT_LLVM_INSTALL_DIR=/usr/lib/llvm-19 ~/llvm-tutor/HelloWorld/
+make 
+
+```
+
+![image-20250620100725342](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620100725342.png)
+
+- 准备测试文件（LLVM IR文件)
+
+```shell
+# Generate an LLVM test file
+/usr/lib/llvm-19/bin/clang -O1 -S -emit-llvm ~/llvm-tutor/inputs/input_for_hello.c -o input_for_hello.ll
+#-S 用于生成*.ll文件
+```
+
+- opt运行
+
+```shell
+/usr/lib/llvm-19/bin/opt -load-pass-plugin ./libHelloWorld.so -passes=hello-world -disable-output input_for_hello.ll
+```
+
+![image-20250620101145946](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620101145946.png)
+
+编译pass、生成IR、运行opt
+
+
+
+## Overview Pass
+
+![image-20250620103113350](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620103113350.png)
+
+
+
+### OpcodeCounter
+
+> - 类型：分析Pass
+> - 作用：分析每个函数中使用了哪些 LLVM 指令（Opcode），打印统计摘要。
+
+
+
+顶层构建包括所有Pass
+
+```shell
+rm -rf build
+mkdir build
+cd build
+cmake -DLT_LLVM_INSTALL_DIR=/usr/lib/llvm-19 ..
+make 
+```
+
+
+
+```shell
+export LLVM_DIR=/usr/lib/llvm-19
+# Generate an LLVM file to analyze
+$LLVM_DIR/bin/clang -emit-llvm -c ~/llvm-tutor/inputs/input_for_cc.c -o input_for_cc.bc
+# Run the pass through opt
+$LLVM_DIR/bin/opt -load-pass-plugin ~/llvm-tutor/build/lib/libOpcodeCounter.so --passes="print<opcode-counter>" -disable-output input_for_cc.bc
+```
+
+![image-20250620110732845](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620110732845.png)
+
+## InjectFuncCall
+
+> - 类型：代码插桩（转换Pass）
+> - 作用：对每个函数插入一条 `printf` 调用，打印函数信息。
+
+```shell
+export LLVM_DIR=/usr/lib/llvm-19
+# Generate an LLVM file to analyze
+$LLVM_DIR/bin/clang -O0 -emit-llvm -c ~/llvm-tutor/inputs/input_for_hello.c -o input_for_hello.bc
+# Run the pass through opt
+$LLVM_DIR/bin/opt -load-pass-plugin ~/llvm-tutor/build/lib/libInjectFuncCall.so --passes="inject-func-call" input_for_hello.bc -o instrumented.bin
+
+$LLVM_DIR/bin/lli instrumented.bin
+```
+
+![image-20250620113444197](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620113444197.png)
+
+对比：
+
+![image-20250620114217869](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250620114217869.png)
