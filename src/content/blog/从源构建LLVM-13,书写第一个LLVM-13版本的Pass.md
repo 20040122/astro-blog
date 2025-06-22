@@ -6,7 +6,7 @@ id: "a2b3aa62586bc8d5"
 date: 2025-06-22 13:36:43
 recommend: true
 top: true
-cover: "封面图URL (为空默认随机内置封面 /public/assets/images/banner)"
+cover: "https://gcore.jsdelivr.net/gh/20040122/Image/c401ba32-c3db-4744-a0c1-d93ad1c25de4.jpg"
 ---
 
 :::note{type="success"}
