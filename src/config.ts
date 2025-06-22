@@ -121,5 +121,5 @@ export default {
     paramsName: 'url'
   },
   // 页面阻尼滚动速度
-  ScrollSpeed: 650
+  ScrollSpeed: 666
 }
