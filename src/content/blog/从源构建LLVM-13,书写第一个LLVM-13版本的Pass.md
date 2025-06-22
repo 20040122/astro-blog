@@ -15,9 +15,6 @@ cover: "https://gcore.jsdelivr.net/gh/20040122/Image/c401ba32-c3db-4744-a0c1-d93
 :::
 
 > 部署申威版本LLVM-13
->
-> ![image-20250622135100355](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250622135100355.png)
-
 
 
 # 一、本地构建编译LLVM-13.0.0官方仓库流程：
