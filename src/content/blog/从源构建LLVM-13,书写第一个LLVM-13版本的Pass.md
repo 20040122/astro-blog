@@ -96,13 +96,7 @@ sudo ninja install
 
 **1.首先明确路径关系**
 
-llvm-project/
-└── llvm/
-    └── lib/
-        └── Transforms/
-            └── FunctionCount/#自己定义的pass
-                ├── FunctionCount.cpp
-                └── CMakeLists.txt
+![image-20250622181325205](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250622181325205.png)
 
 > 优点：
 >
