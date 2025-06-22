@@ -68,9 +68,11 @@ sudo ninja install
 >
 > ![image-20250622140219933](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250622140219933.png)
 >
-> 修改添加标准库头文件#include <cstdint>
+> 添加标准库头文件
 
-
+```c
+#include <cstdint>
+```
 
 :::note{type="warning"}
 
