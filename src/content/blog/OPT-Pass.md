@@ -4,6 +4,7 @@ categories: Learning
 tags: ['LLVM','Optimization']
 id: "5112545ed03959da"
 date: 2025-06-19 21:00:00
+recommend: true
 cover: "https://gcore.jsdelivr.net/gh/20040122/Image/c401ba32-c3db-4744-a0c1-d93ad1c25de4.jpg"
 ---
 
