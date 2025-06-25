@@ -201,3 +201,124 @@ LLVM 13的`opt`工具默认只支持**Legacy PassManager**的老式Pass，或者
 ![image-20250624125938003](https://gcore.jsdelivr.net/gh/20040122/Image/image-20250624125938003.png)
 
 结论：依赖关系少的分析Pass逆向移植成功性可能大，但不确定是否有意义。优化效果好的优化Pass逆向迁移，依赖关系多太过复杂、成功性低。
+
+# 对比不同版本LLVM新增的Pass（统计14-16版本，旧PM废除之前)
+
+
+```shell
+git diff --name-status llvmorg-13.0.0 llvmorg-14.0.0 -- llvm/lib/Transforms/ | grep '^A'
+git diff --name-status llvmorg-13.0.0 llvmorg-14.0.0 -- llvm/include/llvm/Transforms/ | grep '^A'
+```
+
+
+
+# 14.0.0：
+
+ A	llvm/lib/Transforms/IPO/ModuleInliner.cpp
+
+ A	llvm/lib/Transforms/Utils/CodeLayout.cpp
+
+ A	llvm/lib/Transforms/Utils/SampleProfileInference.cpp
+
+ A	llvm/include/llvm/Transforms/IPO/ModuleInliner.h
+
+ A	llvm/include/llvm/Transforms/Scalar/FlattenCFG.h
+
+ A	llvm/include/llvm/Transforms/Utils/CodeLayout.h
+
+ A	llvm/include/llvm/Transforms/Utils/SampleProfileInference.h
+
+| Pass 名称                | 路径                                   | 简介                                                 |
+| ------------------------ | -------------------------------------- | ---------------------------------------------------- |
+| `ModuleInliner`          | `IPO/ModuleInliner.{cpp,h}`            | 模块级内联器（替代原有的内联行为控制方式）           |
+| `CodeLayout`             | `Utils/CodeLayout.{cpp,h}`             | 代码布局优化器，用于基本块重排序等                   |
+| `SampleProfileInference` | `Utils/SampleProfileInference.{cpp,h}` | 通过抽样信息进行性能导向的路径推断                   |
+| `FlattenCFG`（头文件）   | `Scalar/FlattenCFG.h`                  | 控制流图扁平化（虽为头文件，可能表示结构或辅助功能） |
+
+# 15.0.0：
+
+ A	llvm/lib/Transforms/Coroutines/CoroConditionalWrapper.cpp
+
+ A	llvm/lib/Transforms/Scalar/TLSVariableHoist.cpp
+
+ A	llvm/lib/Transforms/Utils/LowerAtomic.cpp
+
+ A	llvm/lib/Transforms/Utils/LowerGlobalDtors.cpp
+
+ A	llvm/lib/Transforms/Utils/MemoryTaggingSupport.cpp
+
+ A	llvm/lib/Transforms/Utils/MisExpect.cpp
+
+ A	llvm/lib/Transforms/Vectorize/VPlanRecipes.cpp
+
+ A	llvm/include/llvm/Transforms/Coroutines/CoroConditionalWrapper.h
+
+ A	llvm/include/llvm/Transforms/Scalar/TLSVariableHoist.h
+
+ A	llvm/include/llvm/Transforms/Utils/LowerAtomic.h
+
+ A	llvm/include/llvm/Transforms/Utils/LowerGlobalDtors.h
+
+ A	llvm/include/llvm/Transforms/Utils/MemoryTaggingSupport.h
+
+ A	llvm/include/llvm/Transforms/Utils/MisExpect.h
+
+| Pass 名称                | 路径                                        | 简介                                              |
+| ------------------------ | ------------------------------------------- | ------------------------------------------------- |
+| `CoroConditionalWrapper` | `Coroutines/CoroConditionalWrapper.{cpp,h}` | 协程条件包装器，优化协程状态切换                  |
+| `TLSVariableHoist`       | `Scalar/TLSVariableHoist.{cpp,h}`           | 提升线程局部变量访问至更高作用域                  |
+| `LowerAtomic`            | `Utils/LowerAtomic.{cpp,h}`                 | 降低原子操作至平台兼容的实现                      |
+| `LowerGlobalDtors`       | `Utils/LowerGlobalDtors.{cpp,h}`            | 降低全局析构函数处理逻辑                          |
+| `MemoryTaggingSupport`   | `Utils/MemoryTaggingSupport.{cpp,h}`        | 内存打标签支持，配合内存安全相关工具（如 HWASAN） |
+| `MisExpect`              | `Utils/MisExpect.{cpp,h}`                   | 检测 `__builtin_expect` 使用是否合理              |
+| `VPlanRecipes`（辅助）   | `Vectorize/VPlanRecipes.cpp`                | 向量化计划表示的实现模块，辅助 `LoopVectorize`    |
+
+# 16.0.0
+
+ A	llvm/lib/Transforms/Instrumentation/KCFI.cpp
+
+ A	llvm/lib/Transforms/Instrumentation/SanitizerBinaryMetadata.cpp
+
+ A	llvm/lib/Transforms/Utils/LowerIFunc.cpp
+
+ A	llvm/lib/Transforms/Vectorize/VPlanCFG.h
+
+ A	llvm/include/llvm/Transforms/IPO/ExtractGV.h
+
+ A	llvm/include/llvm/Transforms/IPO/FunctionSpecialization.h
+
+ A	llvm/include/llvm/Transforms/Instrumentation/KCFI.h
+
+ A	llvm/include/llvm/Transforms/Instrumentation/SanitizerBinaryMetadata.h
+
+ A	llvm/include/llvm/Transforms/Utils/LowerIFunc.h
+
+| Pass 名称                          | 路径                                              | 简介                                      |
+| ---------------------------------- | ------------------------------------------------- | ----------------------------------------- |
+| `KCFI`                             | `Instrumentation/KCFI.{cpp,h}`                    | 内核控制流完整性支持，增强内核 CFI 防护   |
+| `SanitizerBinaryMetadata`          | `Instrumentation/SanitizerBinaryMetadata.{cpp,h}` | 添加二进制级元数据支持（如 ASAN/MSAN 等） |
+| `LowerIFunc`                       | `Utils/LowerIFunc.{cpp,h}`                        | 降低 indirect function（IFunc）语义       |
+| `ExtractGV`（头文件）              | `IPO/ExtractGV.h`                                 | 全局变量抽取 Pass 接口                    |
+| `FunctionSpecialization`（头文件） | `IPO/FunctionSpecialization.h`                    | 函数专用化机制接口                        |
+| `VPlanCFG`（头文件）               | `Vectorize/VPlanCFG.h`                            | VPlan 向量化控制流图结构（辅助向量化）    |
+
+# 总结：
+
+| LLVM 版本 | 新增 Pass 数量（含辅助模块） |
+| --------- | ---------------------------- |
+| 14.0.0    | 4                            |
+| 15.0.0    | 7                            |
+| 16.0.0    | 6                            |
+
+部分模块（如 `VPlanRecipes`, `VPlanCFG`）可能不直接作为 Pass 注册，而是作为 Pass 的内部工具或辅助结构出现。
+
+# 移植：
+
+| 优先级 | Pass                     |
+| ------ | ------------------------ |
+| 1️⃣      | `FunctionSpecialization` |
+| 2️⃣      | `LowerAtomic`            |
+| 3️⃣      | `FlattenCFG`（增强）     |
+| 4️⃣      | `TLSVariableHoist`       |
+| 5️⃣      | `LowerIFunc`             |
+
