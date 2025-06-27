@@ -13,7 +13,7 @@ cover: "https://gcore.jsdelivr.net/gh/20040122/Image/c401ba32-c3db-4744-a0c1-d93
 
 # 思路转变
 
-- 尝试仿照官方仓库将新增的Pass、写到Transforms/Utils目录下变成静态库，变为LLVM内置Pass。**优点**：调用Pass的时候不用使用-load去build/lib目录下找文件，直接写出想要的Pass名即可。**缺点：**修改文件复杂需要改Transforms/Utils/CMakeList.txt、新加pass的cpp文件，tools/opt路径下需要修改opt.cpp和CMakeList.txt。修改不对opt会被污染需重新构建。试错成本比较高
+- 尝试仿照官方仓库将新增的Pass、写到Transforms/Utils目录下变成静态库，变为LLVM内置Pass。**优点**：调用Pass的时候不用使用-load去build/lib目录下找文件，直接写出想要的Pass名即可。**缺点：** 修改文件复杂需要改Transforms/Utils/CMakeList.txt、新加pass的cpp文件，tools/opt路径下需要修改opt.cpp和CMakeList.txt。修改不对opt会被污染需重新构建。试错成本比较高
 - 写成动态库.so文件在Transforms目录下新建文件夹，添加CMakeList.txt(注意要添加MOUDLE声明是一个动态库)目录结构如下所示：
 
 :::picture 
