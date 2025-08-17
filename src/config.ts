@@ -1,12 +1,12 @@
 export default {
   // 网站标题
-  Title: '230的博客',
+  Title: '230’s blog',
   // 网站地址
   Site: 'https://unique-fairy-8490c8.netlify.app/',
   // 网站副标题
-  Subtitle: '',
+  Subtitle: 'welcome to 230’s blog',
   // 网站描述
-  Description: '230的博客',
+  Description: '230’s blog',
   // 网站作者
   Author: '230',
   // 作者头像
@@ -31,13 +31,13 @@ export default {
     // 其他页面高度
     PageHeight: '28.88rem',
     // 背景
-    background: "url('https://zycs-img-da7.pages.dev/v2/o4Rxlwd.jpeg') no-repeat center 60%/cover",
+    background: "url('/assets/images/home.webp') no-repeat center 60%/cover",
   },
   // 博客主题配置
   Theme: {
     // 颜色请用 16 进制颜色码
     // 主题颜色
-    "--vh-main-color": "#01C4B6",
+    "--vh-main-color": "#e884cfff",
     // 字体颜色
     "--vh-font-color": "#34495e",
     // 侧边栏宽度
@@ -51,10 +51,10 @@ export default {
   Navs: [
     // 仅支持 SVG 且 SVG 需放在 public/assets/images/svg/ 目录下，填入文件名即可 <不需要文件后缀名>（封装了 SVG 组件 为了极致压缩 SVG）
     // 建议使用 https://tabler.io/icons 直接下载 SVG
-    { text: '关于', link: '/about', icon: 'Nav_about' },
     { text: '朋友', link: '/links', icon: 'Nav_friends' },
+    { text: '碎碎念', link: '/talking', icon: 'Nav_talking' },
     { text: '昔日', link: '/archives', icon: 'Nav_archives' },
-    
+    { text: '关于', link: '/about', icon: 'Nav_about' },
   ],
   // 侧边栏个人网站
   WebSites: [

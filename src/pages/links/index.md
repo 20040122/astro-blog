@@ -7,6 +7,6 @@ type: "links"
 ---
 
 :::note{type="success"}
-👭 排名不分先后，每次刷新 友链 随机排列~
+👭 友链 
 :::
 

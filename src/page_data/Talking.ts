@@ -5,27 +5,11 @@ export default {
   // 注意：图片请用 vh-img-flex 类包裹
   data: [
     {
-      "date": "2025-02-12 19:36:16",
+      "date": "2025-08-18 00:00:00",
       "tags": [
-        "树",
-        "夕阳"
+        "沉思"
       ],
-      "content": "好美🌲<p class=\"vh-img-flex\"><img src=\"https://i0.wp.com/shp.qpic.cn/collector/1655466387/937ec070-8448-4c7b-9c8b-abd41ce892cb/0\"></p>"
+      "content": "忙惯了闲下来会有负罪感?纯纯M体质<p class=\"vh-img-flex\"><img src=\"https://zycs-img-da7.pages.dev/v2/o20w2ot.gif\"style=\"max-width:500px;height:auto;\"></p>"
     },
-    {
-      "date": "2024-10-08 18:18:18",
-      "tags": [
-        "日常",
-        "工作"
-      ],
-      "content": "下班！"
-    },
-    {
-      "date": "2024-10-05 16:16:06",
-      "tags": [
-        "日常"
-      ],
-      "content": "记录第一条说说"
-    }
   ]
 }
