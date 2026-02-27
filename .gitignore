@@ -26,3 +26,5 @@ test/
 /public/hanplayer
 /public/MineWeb
 /public/other
+# Local Netlify folder
+.netlify

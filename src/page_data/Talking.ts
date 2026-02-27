@@ -5,6 +5,13 @@ export default {
   // 注意：图片请用 vh-img-flex 类包裹
   data: [
     {
+      "date": "2026-02-27 00:00:00",
+      "tags": [
+        "电脑"
+      ],
+      "content": "设备更换为MacBook Air"
+    },
+    {
       "date": "2025-12-19 17:22:00",
       "tags": [
         "考试"
