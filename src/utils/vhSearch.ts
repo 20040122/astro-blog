@@ -13,14 +13,20 @@ export default async (posts: any[]) => {
   });
 
   try {
-    await fs.writeFile(
-      path.join(process.cwd(), 'dist', 'vh-search.json'),
-      JSON.stringify(searchIndex)
-    );
-    await fs.writeFile(
-      path.join(process.cwd(), 'public', 'vh-search.json'),
-      JSON.stringify(searchIndex)
-    );
+    const json = JSON.stringify(searchIndex);
+    const distDir = path.join(process.cwd(), 'dist');
+    const publicDir = path.join(process.cwd(), 'public');
+
+    await Promise.all([
+      fs.mkdir(distDir, { recursive: true }),
+      fs.mkdir(publicDir, { recursive: true })
+    ]);
+
+    await Promise.all([
+      fs.writeFile(path.join(distDir, 'vh-search.json'), json),
+      fs.writeFile(path.join(publicDir, 'vh-search.json'), json)
+    ]);
+
     console.log('\x1b[32m%s\x1b[0m', '搜索文件vh-search文件已生成 successfully');
   } catch (error) {
     console.error('Error writing search index file:', error);
