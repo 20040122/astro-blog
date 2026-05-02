@@ -7,12 +7,13 @@ type: "about"
 ---
 
 :::note{type="warning"}
-在这里与你分享我的见解、经验和最新的动态。
+在这里与你分享我的最新的动态。
 :::
 
 **🚀 工作进展**
-- 9月1日--12月15日：完成DSL自动化工业软件测试用例生成项目；
-- 着手执行器设计研究
+- 2025年9月1日--2025年12月15日：DSL自动化工业软件测试用例生成工具（[论文地址](https://ieeexplore.ieee.org/abstract/document/11494977)：NSGen: A Template-Based Framework to Find Bugs in Computer-Aided Engineering Tools）**CCFA-TSE**；
+- 2025年12月15日--2026年3月31日：多星协同语言CPL-执行器组件开发；
+- 2026年4月1日--2026年8月20日：AI-DaoSCADA 工业组态代码生成开发。
 
 **📞 联系方式**
 - **邮箱：**   z2307692313@gmail.com
